@@ -11,8 +11,10 @@ st.title("Resnet50 Classifier")
 # Model selection
 model_key = st.sidebar.selectbox(
     "Select model",
-    ["bike_car_model"]  # Add more if your backend supports
+    ["bike_car_model","animal_model","rice_model","facial_expression_model"]  # Add more if your backend supports
 )
+
+classifier_type = st.sidebar.selectbox("Select Classifier Type",["binary","multiclass"])
 
 # File uploader
 uploaded_file = st.sidebar.file_uploader(
@@ -36,7 +38,8 @@ if uploaded_file is not None:
             # Prepare payload
             payload = {
                 "model": model_key,
-                "encoded_image": encoded_image
+                "encoded_image": encoded_image,
+                "classifier":classifier_type
             }
 
             try:
